@@ -15,6 +15,7 @@ The application will calculate how much interest you will pay per card, and also
 
 ## Future
 
-[ ] complete OO design
-[ ] implement test suit
-[ ] make GUI
+- [ ] complete OO design
+- [ ] implement error handling
+- [ ] implement test suit
+- [ ] make GUI
