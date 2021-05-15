@@ -2,18 +2,27 @@
 import CreditCard as CC
 
 cardCount = int(input("How many credit cards do you have? "))
+cards = []
+print()
 
+# todo nice error handling for illegal inputs
 for i in range(cardCount):
-	print("hi")
+	name = input("What is the name of this card? ")
+	principal = float(input("What's your principal? "))
+	rate = float(input("What's your APR? "))
+	timeYears = float(int(input("How many months? ")) / 12.0)
+	cards.append(CC.CreditCard(principal, rate, timeYears, name))
+	print() # new line
 
-principal = int(input("What's your principal? "))
-rate = float(input("What's your rate? "))
-cc1 = CC.CreditCard(principal, rate, "Credit of USA")
-months = int(input("How many months? "))
+grandTotal = 0
+for card in cards:
+	# check format of rate - we want it to be a decimal i.e. 50% == .5
+	card.interest = float(card.principal * card.rate * card.timeYears)
+	print("For card "+card.name+", you will pay this amount in interest:$ " + "{:5.2f}".format(card.interest))
 
-# check format of rate - we want it to be a decimal i.e. 50% == .5
-interest = float(cc1.principal * cc1.rate * months)
-print("For "+cc1.name+", you will pay this amount in interest:$ " + "{:5.2f}".format(interest))
+	total = float(card.principal + card.interest)
+	print("\tand you will pay this amount in total:$ " + "{:5.2f}".format(total))
+	grandTotal += total
+	print()
 
-total = float(cc1.principal + interest)
-print("For "+cc1.name+", you will pay this amount in total:$ " + "{:5.2f}".format(total))
+print("For all " + str(cardCount) + " cards, you will pay:$ " + "{:5.2f}".format(grandTotal))
