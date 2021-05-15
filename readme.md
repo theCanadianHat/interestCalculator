@@ -12,3 +12,9 @@ Simple python app to help calculate total amount paid on outstanding debt.
 	- Months (How long you plan to take to pay off the card)
 
 The application will calculate how much interest you will pay per card, and also give you a grand total of how much you will pay (including the current pricipal).
+
+## Future
+
+[ ] complete OO design
+[ ] implement test suit
+[ ] make GUI
