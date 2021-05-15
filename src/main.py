@@ -1,39 +1,29 @@
 
 import CreditCard as CC
+import InputHandler as IH
 
-def handleInput(message):
-	value = input(message)
-	print()
-	return value
-
-def validatePricipal(principal):
-	if principal <= 0:
-		print("Please enter a non-zero positive value for the principal.")
-		return False
-	return True
-
-def validateMonths(months):
-	if months <= 0:
-		print("Please enter a non-zero positive value for the months.")
-		return False
-	return True
-
+MSG_HOW_MANY_CARDS = "How many credit cards do you have? "
+MSG_CARD_NAME = "What is the name of this card? "
+MSG_CARD_PRINCIPAL = "What's this card's principal? $ "
+MSG_CARD_APR = "What's this card's APR? "
+MSG_CARD_TIME = "How many months to pay off this card? "
 MONEY_FORMAT = "{:5.2f}"
+ih = IH.InputHandler()
 
-cardCount = int(handleInput("How many credit cards do you have? "))
+cardCount = int(ih.handleInput(MSG_HOW_MANY_CARDS))
 cards = []
 print("==================================\n")
 
 # todo nice error handling for illegal inputs
 for i in range(cardCount):
-	name = handleInput("What is the name of this card? ")
+	name = ih.handleInput(MSG_CARD_NAME)
 	principal = 0
-	while validatePricipal(principal) == False:
-		principal = float(handleInput("What's this card's principal? $ "))
-	rate = float(handleInput("What's this card's APR? ")) #todo check format
+	while ih.validatePricipal(principal) == False:
+		principal = float(ih.handleInput(MSG_CARD_PRINCIPAL))
+	rate = float(ih.handleInput(MSG_CARD_APR)) #todo check format
 	months = 0
-	while validateMonths(months) == False:
-		months = int(handleInput("How many months to pay off this card? "))
+	while ih.validateMonths(months) == False:
+		months = int(ih.handleInput(MSG_CARD_TIME))
 	timeYears = float(months / 12.0)
 	cards.append(CC.CreditCard(principal, rate, timeYears, name))
 	print("==================================\n")
